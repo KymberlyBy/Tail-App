@@ -1,4 +1,4 @@
-from App import create_app 
+from tailApp import create_app 
 
 app = create_app()
 
@@ -6,6 +6,5 @@ app = create_app()
 def home():
     return 'Welcome to Tail, the app that keeps your loved ones safe!'
 
-if __name__=='__main__':
-    #app.run(debug=True)
-    app.run(host='0.0.0.0', port=8080, debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080, debug=True)  
