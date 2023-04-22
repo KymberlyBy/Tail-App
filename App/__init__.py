@@ -1,11 +1,21 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import click, sys
+#from .views import *
+#from .models import * 
 from App.views import views
-#from flask_migrate import Migrate
+from flask_migrate import Migrate
+from App.db import *
 
 
-db = SQLAlchemy()
+
+#moved to db.py db = SQLAlchemy()
+
+#add views
+def addviews(app):
+    for view in views:
+        app.register_blueprint(view)
 
 def create_app():
     
@@ -15,23 +25,31 @@ def create_app():
         SQLALCHEMY_DATABASE_URI="sqlite:///database.db",
         #DATABASE=os.path.join(app.instance_path, "sqlite:///database.db"),  #check?
     )
+
+    #views
+    addviews(app)
     db.init_app(app)   #works here
+    
+    #moved to db.py : migrate = Migrate(app, db)
 
     try:
         os.makedirs(app.instance_path)
     except OSError:
         pass
 
-    #migrate = Migrate(app,db) #in case of column changes. column name change, table name changes do not apply!
-
     with app.app_context():   #works here
         db.create_all()
-
+    
+    
     @app.route('/')
     def test():
-        return 'this is a sample!'
+        return 'Welcome to Tail!'
 
     return app
+
+
+
+
 
 
         

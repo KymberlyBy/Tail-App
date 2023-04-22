@@ -1,4 +1,8 @@
-from flask import Flask, db
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import check_password_hash, generate_password_hash
+
+db = SQLAlchemy()
 
 class User (db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -8,4 +12,15 @@ class User (db.Model):
     password = db.Column (db.String(100), nullable=False)
     address = db.Column (db.String(250))
     
+#test
+def __init__(self, username, displayName, email, password):
+    self.username = username
+    self.displayName = displayName
+    self.email = email
+    self.password = password
 
+def create_password(self, password):
+    self.password = generate_password_hash(password, method='sha256')
+
+def check_password(self, password):
+    return check_password_hash(self.password, password)

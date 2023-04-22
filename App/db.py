@@ -1,3 +1,19 @@
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
+db=SQLAlchemy()
+
+def migrateApp(app):
+    return Migrate(app, db)
+
+def create_database():
+    db.create_all()
+
+#def init_database():
+ #   db.init_app(app)
+
+
+"""
 import sqlite3
 
 import click
@@ -34,3 +50,4 @@ def initi_db_command():
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+    """
