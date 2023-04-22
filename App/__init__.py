@@ -1,7 +1,6 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from App.controllers import *
 from App.views import views
 #from flask_migrate import Migrate
 
