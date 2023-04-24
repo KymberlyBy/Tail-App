@@ -1,2 +1,2 @@
 from .auth import *
-from .users import *
+from .user import *

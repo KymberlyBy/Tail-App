@@ -4,5 +4,5 @@ users_view = Blueprint('users_view', __name__, static_folder="static", template_
 
 @users_view.route("/testusers")
 def testuser():
-    render_template("users_template.html")
+    return render_template("users_template.html")
     #return "hello! this is the /testusers sample page!"
