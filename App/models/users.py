@@ -1,12 +1,13 @@
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 import json
 
 db = SQLAlchemy()
 
 #removed nullable properties from: firstName, lastName, email, home_address [temp]
-class User (db.Model):
+class User (db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column (db.String(20), unique=True, nullable=False)
     firstName = db.Column (db.String(20), unique=False)
